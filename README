@@ -1,0 +1,30 @@
+# Segmentación de Imágenes con Normalized Cuts (NCuts)
+
+Una implementación optimizada en Python del algoritmo de **Normalized Cuts (Cortes Normalizados)** para la segmentación de imágenes, basado en el trabajo de *Shi & Malik (2000)*.
+
+Este proyecto utiliza **Teoría de Grafos Espectrales** para separar objetos del fondo basándose en la coherencia global de la imagen, en lugar de simples umbrales de color locales.
+
+---
+
+## Características
+
+* **Vectorización Completa:** Uso de operaciones matriciales con `numpy` y `scikit-image` para un rendimiento superior (sin bucles `for` lentos).
+* **Espacio de Color CIELAB:** Procesamiento en el espacio Lab para una detección de bordes más cercana a la percepción humana.
+* **Solver Robusto:** Implementación de `eigsh` en modo *Shift-Invert* para evitar errores de convergencia en matrices grandes.
+* **Segmentación Multiclase:** Capacidad para separar la imagen en $K$ segmentos (no solo binario) usando K-Means sobre el vector de Fiedler.
+
+##  Requisitos
+
+El proyecto requiere **Python 3.8+** y las siguientes librerías:
+
+* `numpy`
+* `opencv-python` (cv2)
+* `scikit-learn` (sklearn)
+* `scikit-image` (skimage)
+* `scipy`
+* `matplotlib`
+
+Puedes instalarlas todas con:
+
+```bash
+pip install -r requirements.txt
