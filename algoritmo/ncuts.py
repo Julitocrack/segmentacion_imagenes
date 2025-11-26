@@ -6,18 +6,18 @@ from scipy.sparse.linalg import eigsh
 from sklearn.feature_extraction.image import img_to_graph
 from sklearn.cluster import KMeans
 
-# ============================================================
-# 1. CONSTRUCCIÓN DEL GRAFO (OPTIMIZADA Y CORREGIDA)
-# ============================================================
+
+# 1. CONSTRUCCIÓN DEL GRAFO 
+
 def construir_grafo_rapido(imagen, sigma_color=40.0, sigma_espacial=15.0):
     """
     Construye la matriz de afinidad W usando operaciones vectorizadas.
     """
     alto, ancho, canales = imagen.shape
     
-    # [CORRECCIÓN CRÍTICA]
+   
     # Pasamos solo el primer canal para definir la estructura de rejilla 2D.
-    # Esto evita el "IndexError" que tenías antes.
+   
     print("   -> Generando estructura de grafo (vectorizado)...")
     grafo = img_to_graph(imagen[:, :, 0])  
     
@@ -45,9 +45,9 @@ def construir_grafo_rapido(imagen, sigma_color=40.0, sigma_espacial=15.0):
     grafo.data = pesos
     return grafo
 
-# ============================================================
+
 # 2. SOLVER ROBUSTO (CORREGIDO PARA CONVERGENCIA)
-# ============================================================
+
 def ncuts(W, num_segmentos):
     """
     Resuelve (D - W)x = lambda Dx usando Shift-Invert para estabilidad.
@@ -67,8 +67,8 @@ def ncuts(W, num_segmentos):
     
     print(f"   -> Resolviendo {num_segmentos} vectores propios (Modo Shift-Invert)...")
     
-    # [CORRECCIÓN CRÍTICA]
-    # sigma=0.001 + which='LM' evita el error "ARPACK No convergence".
+   
+    # sigma=0.001 + which='LM' 
     try:
         valores, vectores = eigsh(
             L_sym, 

@@ -26,7 +26,7 @@ def main():
     W = construir_grafo_rapido(img_lab, sigma_color=40.0, sigma_espacial=15.0)
     
     # --- CONFIGURACIÓN DE SEGMENTOS ---
-    # Usamos 4 para separar: Jugador A, Jugador B, Pasto, Fondo
+    # Usamos 4 para separar
     NUM_CLUSTERS = 4
     
     print("2. Resolviendo NCuts...")
